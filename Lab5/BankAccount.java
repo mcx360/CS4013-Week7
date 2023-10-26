@@ -58,9 +58,15 @@ public class BankAccount {
     }
 
     public void withdraw(double amount, String description){
-        setBalance(balance-amount);
-        Transactions withdrawTransaction = new Transactions(true, amount, getBalance(), description);
-        accountTransactions.add(withdrawTransaction);
+        if(amount<=getBalance()){
+            setBalance(balance-amount);
+            Transactions withdrawTransaction = new Transactions(true, amount, getBalance(), description);
+            accountTransactions.add(withdrawTransaction);
+        }
+        else{
+            Transactions withdrawTransaction = new Transactions(true, amount, getBalance(), "Declined, insufficient funds on the account");
+            accountTransactions.add(withdrawTransaction);
+        }
     }
 
     public void deposit(double amount, String description){

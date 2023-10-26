@@ -12,7 +12,8 @@ public class SavingsAccount extends BankAccount{
 
     @Override
     public void withdraw(double amount, String description){
-        System.out.println("Can not withdraw funds from a savings account!");
+        Transactions withdrawTransaction = new Transactions(true, amount, getBalance(), "Declined, cannot withdraw funds from savings account");
+        addTransaction(withdrawTransaction);
     }
 
     @Override
